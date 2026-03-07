@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
 
     private CalculPresenter presenter;
 
+    /**
+     * Permet de référencer les objets graphiques dans le code
+     * */
     private void chargeObjetsGraphiques() {
         txtPoids = (EditText) findViewById(R.id.txtPoids);
         txtTaille = (EditText) findViewById(R.id.txtTaille);
@@ -43,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
         btnCalc = (Button) findViewById(R.id.btnCalc);
     }
 
+    /**
+     * Fonction d'initialisation, s'exécute à la création de l'Activity
+     */
     private void init() {
         chargeObjetsGraphiques();
 
@@ -51,6 +57,11 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
         btnCalc.setOnClickListener(v -> btnCalc_clic());
     }
 
+    /**
+     * Fonction qui sera ensuite liée a un listener pour s'exécuter au clic du bouton.
+     * Récupère les informations depuis les objets graphiques vers des variables locales,
+     * puis appelle creerProfil du presenter.
+     */
     private void btnCalc_clic() {
         Integer poids = 0, taille = 0, age = 0, sexe = 0;
         try {
@@ -68,16 +79,30 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
         }
     }
 
+    /**
+     * Fonction permettant d'afficher le résultat. Est appellée par le presenter.
+     * @param image
+     * @param img
+     * @param message
+     * @param normal
+     */
     @Override
     public void afficherResultat(String image, double img, String message, boolean normal) {
         int imageId = getResources().getIdentifier(image, "drawable", getPackageName());
         if (imageId == 0) { imgSmiley.setImageResource(R.drawable.normal); } else { imgSmiley.setImageResource(imageId); }
 
-        String texte = String.format("%.01f : %s", img, message);
+        String texte = String.format("%.01f : IMG %s", img, message);
         lblIMG.setText(texte);
         if (normal) { lblIMG.setTextColor(Color.GREEN); } else { lblIMG.setTextColor(Color.RED); }
     }
 
+    /**
+     * Fonction qui s'exécute au lancement de l'activité.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
