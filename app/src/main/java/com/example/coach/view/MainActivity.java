@@ -97,6 +97,22 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
     }
 
     /**
+     * Fonction permettant de remplir les champs à partir de données pré-existantes. Est appellée par le presenter.
+     * @param poids
+     * @param taille
+     * @param age
+     * @param sexe
+     */
+    @Override
+    public void remplirChamps(Integer poids, Integer taille, Integer age, Integer sexe) {
+        txtPoids.setText(poids.toString());
+        txtTaille.setText(taille.toString());
+        txtAge.setText(age.toString());
+        if (sexe == 1) rdHomme.setChecked(true);
+        else rdFemme.setChecked(true);
+    }
+
+    /**
      * Fonction qui s'exécute au lancement de l'activité.
      * @param savedInstanceState If the activity is being re-initialized after
      *     previously being shut down then this Bundle contains the data it most
