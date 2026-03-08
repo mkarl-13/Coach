@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements ICalculView {
 
         presenter = new CalculPresenter(this);
 
+        presenter.chargerDernierProfil();
+
         btnCalc.setOnClickListener(v -> btnCalc_clic());
     }
 

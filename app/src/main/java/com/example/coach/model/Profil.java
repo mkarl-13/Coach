@@ -12,10 +12,10 @@ public class Profil {
     private static final String[] IMAGE = {"maigre", "normal", "graisse"};
 
     private Integer poids, taille, age, sexe;
-
-    private double img;
-    private int indice;
     private Date dateMesure;
+
+    private transient double img;
+    private transient int indice;
 
     /**
      * Constructeur de l'objet Profil
