@@ -1,6 +1,9 @@
 package com.example.coach.contract;
 
-public interface ICalculView {
+import android.content.Context;
+import android.widget.Toast;
+
+public interface ICalculView extends IAllView {
     /**
      * Fonction abstraite qui sera définie dans la vue. Permet d'afficher le résultat.
      * @param image
@@ -18,4 +21,9 @@ public interface ICalculView {
      * @param sexe
      */
     void remplirChamps(Integer poids, Integer taille, Integer age, Integer sexe);
+
+    @Override
+    default void afficherMessage(String message) {
+        Toast.makeText((Context) this, message, Toast.LENGTH_SHORT).show();
+    }
 }
